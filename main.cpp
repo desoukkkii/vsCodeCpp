@@ -1,39 +1,30 @@
 #include <iostream>
 using namespace std;
 
-class Exam
-{
-protected:
-  double midMark, finalMark;
-
-public:
-  Exam(double mK, double fK) : midMark(mK), finalMark(fK) {}
-};
-
-class Sports
-{
-protected:
-  double sportsMark;
-
-public:
-  Sports(double sK) : sportsMark(sK) {}
-};
-
-class Result : public Exam, public Sports
+class Employee
 {
 private:
-  double totalMark;
+  int empID;
+  double salary, bonus;
 
 public:
-  Result(double mK, double fK, double sK) : Exam(mK, fK), Sports(sK), totalMark(0) {}
-  double calculateTotal() { return midMark + finalMark + sportsMark; }
-  void dis() { cout << calculateTotal(); }
+  Employee(int ei, double s, double b) : empID(ei), salary(s), bonus(b) {}
+  ~Employee() { cout << "Employee Object Destroyed!" << endl; }
+
+  friend void income(Employee e);
 };
+
+void income(Employee e)
+{
+  double income = e.salary + e.bonus;
+  cout << "ID: " << e.empID << endl
+       << "Salary: $" << e.salary << endl;
+}
 
 int main()
 {
-  Result r(1.00, 2.00, 3.00);
-  r.calculateTotal();
-  r.dis();
+  Employee e1(1, 12000, 2000), e2(2, 14000, 2000);
+  income(e1);
+  income(e2);
   return 0;
 }
