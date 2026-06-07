@@ -1,45 +1,26 @@
 #include <iostream>
 using namespace std;
 
-class Person
+class Student
 {
 protected:
+  int id;
   string name;
-  int age;
 
 public:
-  Person(string n, int a) : name(n), age(a) {}
-  ~Person() { cout << "Person ends!"; }
-};
+  Student(int i, string n) : id(i), name(n) {}
 
-class Student : public Person
-{
-protected:
-  int studentID;
-
-public:
-  Student(string n, int a, int sid) : Person(n, a), studentID(sid) {}
-  ~Student() { cout << "Student ends!"; }
-};
-
-class GraduateStudent : public Student
-{
-private:
-  string thesisTitle;
-
-public:
-  GraduateStudent(string n, int a, int sid, string tT) : Student(n, a, sid), thesisTitle(tT) {}
-  ~GraduateStudent() { cout << "GraduateStudent ends!"; }
-
-  void dis() { cout << "Name: " << name << endl
-                    << "Age: " << age << endl
-                    << "ID: " << studentID << endl
-                    << "Thesis title: " << thesisTitle << endl; }
+  void dis()
+  {
+    cout << "ID: " << id << endl
+         << "Name: " << name << endl;
+  }
 };
 
 int main()
 {
-  GraduateStudent g("DESOUKI", 20, 101, "CS");
-  g.dis();
+  Student s(1, "DESOUKI");
+  Student *ptr = &s;
+  ptr->dis();
   return 0;
 }
