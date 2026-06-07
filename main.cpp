@@ -1,30 +1,45 @@
 #include <iostream>
 using namespace std;
 
-class Employee
+class Person
 {
-private:
-  int empID;
-  double salary, bonus;
+protected:
+  string name;
+  int age;
 
 public:
-  Employee(int ei, double s, double b) : empID(ei), salary(s), bonus(b) {}
-  ~Employee() { cout << "Employee Object Destroyed!" << endl; }
-
-  friend void income(Employee e);
+  Person(string n, int a) : name(n), age(a) {}
+  ~Person() { cout << "Person ends!"; }
 };
 
-void income(Employee e)
+class Student : public Person
 {
-  double income = e.salary + e.bonus;
-  cout << "ID: " << e.empID << endl
-       << "Salary: $" << e.salary << endl;
-}
+protected:
+  int studentID;
+
+public:
+  Student(string n, int a, int sid) : Person(n, a), studentID(sid) {}
+  ~Student() { cout << "Student ends!"; }
+};
+
+class GraduateStudent : public Student
+{
+private:
+  string thesisTitle;
+
+public:
+  GraduateStudent(string n, int a, int sid, string tT) : Student(n, a, sid), thesisTitle(tT) {}
+  ~GraduateStudent() { cout << "GraduateStudent ends!"; }
+
+  void dis() { cout << "Name: " << name << endl
+                    << "Age: " << age << endl
+                    << "ID: " << studentID << endl
+                    << "Thesis title: " << thesisTitle << endl; }
+};
 
 int main()
 {
-  Employee e1(1, 12000, 2000), e2(2, 14000, 2000);
-  income(e1);
-  income(e2);
+  GraduateStudent g("DESOUKI", 20, 101, "CS");
+  g.dis();
   return 0;
 }
