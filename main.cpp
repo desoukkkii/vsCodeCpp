@@ -1,16 +1,24 @@
 #include <iostream>
 using namespace std;
 
-class Test
+class Person
 {
 public:
-  Test() { cout << "Normal constructor."; }
-  Test(const Test &t) { cout << "Copy constructor."; }
+  virtual void display() { cout << "Base!"; }
+};
+
+class Student : public Person
+{
+public:
+  void display() override { cout << "Derived!"; }
 };
 
 int main()
 {
-  Test t1, t2(t1);
+  Person *ptr;
+  Student s;
+  ptr = &s;
+  ptr->display();
 
   return 0;
 }
