@@ -4,13 +4,13 @@ using namespace std;
 class Person
 {
 public:
-  virtual void display() { cout << "Base!"; }
+  void display() { cout << "Base!"; }
 };
 
 class Student : public Person
 {
 public:
-  void display() override { cout << "Derived!"; }
+  void display() { cout << "Derived!"; }
 };
 
 int main()
