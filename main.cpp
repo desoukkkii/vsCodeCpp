@@ -1,22 +1,16 @@
 #include <iostream>
 using namespace std;
 
-class Student
+class Test
 {
-private:
-  int id;
-
 public:
-  Student(int i) : id(i) {}
-  Student(const Student &s) : id(s.id) {}
-  void display() { cout << "ID: " << id << endl; }
+  Test() { cout << "Normal constructor."; }
+  Test(const Test &t) { cout << "Copy constructor."; }
 };
 
 int main()
 {
-  Student s1(101), s2(s1);
-  s1.display();
-  s2.display();
+  Test t1, t2(t1);
 
   return 0;
 }
