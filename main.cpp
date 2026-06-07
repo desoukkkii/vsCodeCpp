@@ -1,40 +1,22 @@
 #include <iostream>
 using namespace std;
 
-class Person
-{
-protected:
-  int id;
-  string name;
-
-public:
-  Person(int i, string n) : id(i), name(n) {}
-  ~Person() { cout << "Done!"; }
-};
-
-class Student : public Person
+class Student
 {
 private:
-  double grade, gpa;
+  int id;
 
 public:
-  Student(int i, string n, double gr, double gp) : Person(i, n), grade(gr), gpa(gp) {}
-
-  void dis() { cout << "Display function called!"; }
-
-  friend void disInfo(Student s);
+  Student(int i) : id(i) {}
+  Student(const Student &s) : id(s.id) {}
+  void display() { cout << "ID: " << id << endl; }
 };
-
-void disInfo(Student s) { cout << "ID: " << s.id << endl
-                               << "Name: " << s.name << endl
-                               << "Grade: " << s.grade << endl
-                               << "GPA: " << s.gpa << endl; }
 
 int main()
 {
-  Student s(1, "DESOUKI", 97.00, 4.00);
-  Student *ptr = &s;
-  ptr->dis();
-  disInfo(s);
+  Student s1(101), s2(s1);
+  s1.display();
+  s2.display();
+
   return 0;
 }
