@@ -1,9 +1,19 @@
 #include <iostream>
 using namespace std;
+
+double addition(double x, double y)
+{
+	return x + y;
+}
+
 int main()
 {
-	for (int i = 0; i < 11;i++){
-		cout << i << " ";
-	}
-		return 0;
+	cout << "===== Adition =====" << endl;
+	cout << "Enter first number: " << endl;
+	int a, b;
+	cin >> a;
+	cout << "Enter the second number: " << endl;
+	cin >> b;
+	cout << addition(a, b);
+	return 0;
 }
